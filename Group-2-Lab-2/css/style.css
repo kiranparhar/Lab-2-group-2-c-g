@@ -1,0 +1,72 @@
+.container {
+    min-height: 500px;
+    background: #dadada;
+    width: 75%;
+	position: relative;
+    margin: 0 auto;
+    border: 3px SOLID #615e5e;
+    border-radius: 4px;
+    box-shadow: 1px 1px 7px #ccc;
+}
+.add {
+    width: 95%;
+    margin: 0 auto;
+}
+a.backbtn {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    background: black;
+    color: #fff;
+    padding: 12px 17px;
+    text-decoration: unset;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px #757474;
+}
+h2.pageTitle {
+    text-align: center;
+    padding: 0 0 10px 0px;
+    border-bottom: 1px solid #ccc;
+}
+table {
+  font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 96%;
+    margin: 0 auto;
+}
+
+td, th {
+    border: 1px solid #a9a6a6;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #e8e8e8;
+}
+tr:nth-child(odd) {
+    background: #bdbdbd;
+}
+p.listp {
+    position: relative;
+    padding: 4px 15px !important;
+}
+.flagimg {
+	    width: 35px;
+    height: 22px;
+    position: absolute;
+    right: 16px;
+}
+.h4title {
+    padding: 0 10px;
+    margin: 0 6px;
+}
+.gallerydiv {
+    display: inherit;
+    width: 96%;
+    margin: 0 auto;
+}
+.gallerydiv img{
+	width: 100px;
+    height: 100px;
+}
