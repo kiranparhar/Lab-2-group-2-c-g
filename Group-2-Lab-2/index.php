@@ -1,7 +1,7 @@
 <?php
 define("DB_HOST","localhost");
 define("DB_USERNAME","root");
-define("DB_PASSWORD","IM315T01web");
+define("DB_PASSWORD","");
 define("DB_NAME","group2_lab2");
 // Check connection
 $conn = new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -57,6 +57,11 @@ $Countryname=$_GET['name']; ?>
 			 <img class="galleryimg"  alt="<?php echo $row2[3]?>" src="<?php echo $row2[2]?>"/>
 	  <?php  } } ?>
 	 </div>
+	 <div class="btngroup">
+	 <a href="edit.php?Countryid=<?php echo $row[0]; ?>&name=<?php echo $row[1]; ?>" class="btn">Edit</a>
+	 <a href="javascript:void(0)" rel="<?php echo $row[0]; ?>"  table="country" class="btn deletedata">Delete</a>
+	 </div>
+	 <hr>
 	<?php 
 	  $i++;
 	  }
@@ -64,12 +69,13 @@ $Countryname=$_GET['name']; ?>
   ?>
   <form  class="add" method="POST" action="?Country=<?php echo $Countryid; ?>&name=<?php echo $Countryname; ?>">
   <h2>Add Country</h2>
-  <input type="hidden" name="cid" value="<?php echo $_GET['Country']; ?>">
+  <input type="hidden"  name="cid" value="<?php echo $_GET['Country']; ?>">
   <label for="fname">Country Name</label><br>
-  <input type="text" name="name" required><br><br>
+  <input  class="inputclass" type="text" id="cname" name="name" required><br><br>
    <label for="fname">Country ISO Code</label><br>
-  <input type="text" name="iso" required><br><br>
-  <input type="submit" name="submit" value="Submit">
+  <input class="inputclass" type="text" id="ciso" name="iso" required><br><br>
+  <input type="submit"  class="btn" name="submit" value="Submit">
+  <a href="javascript:void(0)" class="btn" id="clearbtn"  >Clear</a>
  </form> 
   <a href="./" class="backbtn">Back to home</a>
 </div>
@@ -104,3 +110,47 @@ $Countryname=$_GET['name']; ?>
 
 </body>
 </html>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#clearbtn").click(function(){
+    $("#cname").val("");
+    $("#ciso").val("");
+  });
+  $('.deletedata').click(function () {
+     let _this = $(this);
+    let id = $(this).attr("rel");
+     let table = $(this).attr("table");
+     swal({
+       title: "Are you sure?",
+       text: "Once deleted, you will not be able to recover this data!",
+       // icon: "warning",
+       buttons: true,
+       dangerMode: true,
+     })
+       .then((data) => {
+         if (data) {
+           $.ajax({
+             url: "delete.php",
+             type: "post",
+             data: { id: id, table: table },
+             cache: false,
+             success: function (response) {
+                 swal("Proof! Your data has been deleted!", {
+                 icon: "success",
+               });
+               setTimeout(() => {
+                window.location.reload();
+                },1000);
+               
+             }, error(error) {
+               console.error(error);
+             }
+
+           });
+         }
+       });
+   });
+});
+</script>
