@@ -110,3 +110,47 @@ $Countryname=$_GET['name']; ?>
 
 </body>
 </html>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#clearbtn").click(function(){
+    $("#cname").val("");
+    $("#ciso").val("");
+  });
+  $('.deletedata').click(function () {
+     let _this = $(this);
+    let id = $(this).attr("rel");
+     let table = $(this).attr("table");
+     swal({
+       title: "Are you sure?",
+       text: "Once deleted, you will not be able to recover this data!",
+       // icon: "warning",
+       buttons: true,
+       dangerMode: true,
+     })
+       .then((data) => {
+         if (data) {
+           $.ajax({
+             url: "delete.php",
+             type: "post",
+             data: { id: id, table: table },
+             cache: false,
+             success: function (response) {
+                 swal("Proof! Your data has been deleted!", {
+                 icon: "success",
+               });
+               setTimeout(() => {
+                window.location.reload();
+                },1000);
+               
+             }, error(error) {
+               console.error(error);
+             }
+
+           });
+         }
+       });
+   });
+});
+</script>
