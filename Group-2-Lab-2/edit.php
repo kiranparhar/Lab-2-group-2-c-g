@@ -16,6 +16,10 @@ if ($conn -> connect_errno) {
 <html>
 <head>
 <title>Lab 2</title>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+ <!-- Style Sheet -->
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -78,7 +82,7 @@ $Countryname=$_GET['name']; ?>
 	 if ($result = $conn -> query($sql)) {
 	  while ($row = $result -> fetch_row()) { 
 	  ?>
-	  <h2 class="pageTitle">Edit Country <?php echo $Countryname; ?>
+	  <h2 class="pageTitle bg-secondary mt-2">Edit Country <?php echo $Countryname; ?>
 	<?php if($row[5]) {?>
 	 <img class="flagimg" src="data:image/png;base64,<?php echo $row[5]?>"/>
 	 <?php } else {?>
@@ -86,35 +90,35 @@ $Countryname=$_GET['name']; ?>
 	 <?php }?>
 	</h2>
 	  <form  class="add2" method="POST" action="?Countryid=<?php echo $row[0]; ?>&name=<?php echo $Countryname; ?>" enctype="multipart/form-data">
-	  <input type="hidden" class="inputclass" name="cid" value="<?php echo $row[0]; ?>">
-	  <label for="fname">Country Flag</label><br>
-	  <input type="file"  class="inputclass" id="flag" name="flag"><br><br>
-	  <label for="fname">Country Name</label><br>
-	  <input type="text"  class="inputclass" id="cname" name="name" value="<?php echo $row[1]; ?>" required><br><br>
-	  <label for="fname">Country ISO Code</label><br>
-	  <input type="text"  class="inputclass" id="ciso" value="<?php echo $row[2]; ?>" name="iso" required><br><br>
-	  <label for="fname">Country Description</label><br>
-	  <textarea id="Description"  class="textareaclass" name="Description" rows="4" cols="50"><?php echo $row[3]; ?></textarea>
-	  <hr>
-	  <h4 class="h4title" >Gallery :- </h4>
-		 <div class="gallerydiv">
-		 <?php 
-			  $sql2 = "SELECT `ID`, `Country_ID`, `Image_Path`, `Name`, `Description` FROM `countryimagesgallery` WHERE `Country_ID`=".$row[0];
-			  if ($result2 = $conn -> query($sql2)) {
-				while ($row2 = $result2 -> fetch_row()) { ?>
-				<div class="imagediv">
-				 <img class="galleryimg"  alt="<?php echo $row2[3]?>" src="<?php echo $row2[2]?>"/>
-				 <a href="javascript:void(0)" class="deleteimage" rel="<?php echo $row2[0]?>" table="countryimagesgallery">X</a>
-				 </div>
-		  <?php  } } ?>
-		  <p><label>Add New Image</label>
-		  <input type="file" name="imagename"></p>
-		 </div>
-		 <p><?php echo  $msg; ?></p>
-	  <input type="submit"  class="btn" name="submit" value="Update">
-	  <a href="javascript:void(0)" class="btn" id="clearbtn"  >Clear</a>
-	  <a href="./" class="backbtn">Back to home</a>
-	 </form> 
+	  	  <input type="hidden" class="inputclass" name="cid" value="<?php echo $row[0]; ?>">
+	  	  <label for="fname" class="mt-4 ml-5">Country Flag: </label>
+	  	  <input type="file"  class="inputclass" id="flag" name="flag"><br><br>
+	  	  <label for="fname" class="ml-5">Country Name: </label>
+	  	  <input type="text"  class="inputclass" id="cname" name="name" value="<?php echo $row[1]; ?>" required><br><br>
+	  	  <label for="fname" class="ml-5">Country ISO Code: </label>
+	  	  <input type="text"  class="inputclass" id="ciso" value="<?php echo $row[2]; ?>" name="iso" required><br><br>
+	  	  <label for="fname" class="ml-5">Country Description</label><br>
+	  	  <textarea id="Description"  class="textareaclass ml-5" name="Description" rows="4" cols="50"><?php echo $row[3]; ?></textarea>
+	  	  <hr>
+	  	  <h4 class="h4title ml-5" >Gallery :- </h4>
+	  		 <div class="gallerydiv">
+	  		 <?php 
+	  			  $sql2 = "SELECT `ID`, `Country_ID`, `Image_Path`, `Name`, `Description` FROM `countryimagesgallery` WHERE `Country_ID`=".$row[0];
+	  			  if ($result2 = $conn -> query($sql2)) {
+	  				while ($row2 = $result2 -> fetch_row()) { ?>
+	  				<div class="imagediv">
+	  				 <img class="galleryimg ml-5 mb-2"  alt="<?php echo $row2[3]?>" src="<?php echo $row2[2]?>"/>
+	  				 <a href="javascript:void(0)" class="deleteimage" rel="<?php echo $row2[0]?>" table="countryimagesgallery">X</a>
+	  				 </div>
+	  		  <?php  } } ?>
+	  		  <p><label class="ml-5 mt-3">Add New Image</label>
+	  		  <input type="file" name="imagename"></p>
+	  		 </div>
+	  		 <p><?php echo  $msg; ?></p>
+	  	  <input type="submit"  class="btn btn-success ml-5" name="submit" value="Update">
+	  	  <a href="javascript:void(0)" class="btn btn-danger ml-3" id="clearbtn">Clear</a><br><br><br><br>
+	  	  <a href="./" class="backbtn">Back to home</a>
+	  	 </form> 
 	 
 	 
 	<?php 

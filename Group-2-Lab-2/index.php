@@ -16,6 +16,11 @@ if ($conn -> connect_errno) {
 <html>
 <head>
 <title>Lab 2</title>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ <!-- Style Sheet -->
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -57,9 +62,9 @@ $Countryname=$_GET['name']; ?>
        <img class="galleryimg"  alt="<?php echo $row2[3]?>" src="<?php echo $row2[2]?>"/>
     <?php  } } ?>
    </div>
-   <div class="btngroup">
-   <a href="edit.php?Countryid=<?php echo $row[0]; ?>&name=<?php echo $row[1]; ?>" class="btn">Edit</a>
-   <a href="javascript:void(0)" rel="<?php echo $row[0]; ?>"  table="country" class="btn deletedata">Delete</a>
+   <div class="btngroup ml-3 mt-3">
+   <a href="edit.php?Countryid=<?php echo $row[0]; ?>&name=<?php echo $row[1]; ?>" class="btn btn-info">Edit</a>
+   <a href="javascript:void(0)" rel="<?php echo $row[0]; ?>"  table="country" class="btn deletedata btn-info ml-3">Delete</a>
    </div>
    <hr>
   <?php 
@@ -70,13 +75,13 @@ $Countryname=$_GET['name']; ?>
   <form  class="add" method="POST" action="?Country=<?php echo $Countryid; ?>&name=<?php echo $Countryname; ?>">
   <h2>Add Country</h2>
   <input type="hidden"  name="cid" value="<?php echo $_GET['Country']; ?>">
-  <label for="fname">Country Name</label><br>
-  <input  class="inputclass" type="text" id="cname" name="name" required><br><br>
-   <label for="fname">Country ISO Code</label><br>
-  <input class="inputclass" type="text" id="ciso" name="iso" required><br><br>
-  <input type="submit"  class="btn" name="submit" value="Submit">
-  <a href="javascript:void(0)" class="btn" id="clearbtn"  >Clear</a>
- </form> 
+  <label for="fname">Country Name: </label>
+  <input  class="inputclass" type="text" id="cname" name="name" required="please enter the country name">
+   <label for="fname" class="ml-2">Country ISO Code: </label>
+  <input class="inputclass" type="text" id="ciso" name="iso" required>
+  <input type="submit"  class="btn btn-success ml-3" name="submit" value="Submit">
+  <a href="javascript:void(0)" class="btn btn-danger" id="clearbtn"  >Clear</a>
+ </form><br><br><br><br>
   <a href="./" class="backbtn">Back to home</a>
 </div>
 <?php } else { ?>
